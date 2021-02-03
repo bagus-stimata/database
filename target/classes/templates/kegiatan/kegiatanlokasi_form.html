@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <title>Database SBT Maluku</title>
+    <meta name="description" content="spring-boot thymeleaf | home ">
+    <meta name="author" content="">
+    <meta charset="utf-8">
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+    <meta http-equiv="Content-Language" content="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
+    <meta name="msapplication-tap-highlight" content="no">
+
+
+
+    <!-- <link href="./main.css" rel="stylesheet"> -->
+    <link th:href="@{~/src/main.css}" rel="stylesheet">
+
+    <!-- <script th:src="@{/webjars/jquery/jquery.min.js}"></script> -->
+    <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.js}"></script>
+
+    <!-- Untuk Themes https://demo.dashboardpack.com/architectui-html-pro/index.html -->
+    <!-- Harus menggunakn bootstrap sendiri -->
+    <!-- <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css} " /> -->
+
+    <link th:rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css} " />
+
+
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+
+    <!--### DATA TABLES ###-->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css" /> -->
+
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" /> -->
+    <!-- <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" /> -->
+    <!-- <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" /> -->
+
+
+    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap.min.css" /> -->
+    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" /> -->
+    <link rel="stylesheet" th:href="@{~/DataTables/DataTables-1.10.21/css/dataTables.bootstrap4.min.css}" />
+    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.jqueryui.min.css" /> -->
+
+    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.4/css/responsive.bootstrap.min.css" /> -->
+    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.4/css/responsive.bootstrap4.min.css" /> -->
+    <link rel="stylesheet" th:href="@{~/DataTables/responsive/2.2.5/css/responsive.bootstrap4.min.css}" />
+    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.4/css/responsive.jqueryui.min.css" /> -->
+
+
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> -->
+    <!-- <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script> -->
+    <script th:src="@{~/DataTables/DataTables-1.10.21/js/jquery.dataTables.min.js}"></script>
+    <!-- <script th:href="@{~/DataTables/DataTables-1.10.21/js/jquery.dataTables.min.js}"></script> -->
+
+    <!-- <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script> -->
+    <!-- <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap.min.js"></script> -->
+
+    <!-- <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script> -->
+    <script th:src="@{~/DataTables/DataTables-1.10.21/js/dataTables.bootstrap4.min.js}"></script>
+
+    <!-- <script src="https://cdn.datatables.net/1.10.21/js/dataTables.jqueryui.min.js"></script> -->
+
+    <!-- <script src="https://cdn.datatables.net/responsive/2.2.4/js/dataTables.responsive.min.js"></script> -->
+    <script th:src="@{~/DataTables/responsive/2.2.5/js/dataTables.responsive.min.js}"></script>
+
+    <!-- <script src="https://cdn.datatables.net/responsive/2.2.4/js/dataTables.responsive.min.js"></script> -->
+    <!-- <script src="https://cdn.datatables.net/responsive/2.2.4/js/responsive.bootstrap.min.js"></script> -->
+    <!-- <script src="https://cdn.datatables.net/responsive/2.2.4/js/responsive.bootstrap4.min.js"></script> -->
+    <script th:src="@{~/DataTables/responsive/2.2.5/js/responsive.bootstrap4.min.js}"></script>
+    <!-- <script src="https://cdn.datatables.net/responsive/2.2.4/js/responsive.jqueryui.min.js"></script> -->
+
+    <style>
+        body {
+            background-color: #f5f5f5;
+        }
+        
+        .imagePreview {
+            width: 100%;
+            height: 180px;
+            background-position: center center;
+            background: url(http://cliquecities.com/assets/no-image-e3699ae23f866f6cbdf8ba2443ee5c4e.jpg);
+            background-color: #fff;
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: inline-block;
+            box-shadow: 0px -3px 6px 2px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-primary {
+            display: block;
+            border-radius: 0px;
+            box-shadow: 0px 4px 6px 2px rgba(0, 0, 0, 0.2);
+            margin-top: -5px;
+        }
+        
+        .imgUp {
+            margin-bottom: 15px;
+        }
+        
+        .del {
+            position: absolute;
+            top: 0px;
+            right: 15px;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            background-color: rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+        }
+        
+        .imgAdd {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #4bd7ef;
+            color: #fff;
+            box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            line-height: 30px;
+            margin-top: 0px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+    </style>
+
+
+    <script>
+        $(document).ready(function() {
+            $('#tombolBackPage, #tombolKembaliToList').click(function() {
+                // alert('kembali');
+
+                var str_JQuery = $("#kegiatanBeanId").val();
+                var str_JavaScript = document.getElementById("kegiatanBeanId").value;
+                var url = "/kegiatan/edit_form/" + str_JQuery;
+
+
+                $(location).attr('href', url);
+
+            });
+        });
+    </script>
+
+</head>
+
+<body>
+    <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
+
+        <div th:insert="my-fragments/general-fragment.html :: fragment-app-header"> </div>
+
+        <div class="app-main">
+
+            <div th:insert="my-fragments/general-fragment.html :: fragment-app-sidebar"> </div>
+
+            <div class="app-main__outer ">
+
+                <div class="app-main__inner">
+                    <div class="app-page-title">
+                        <div class="page-title-wrapper">
+                            <div class="page-title-heading">
+                                <div class="page-title-icon">
+                                    <i class="pe-7s-diamond icon-gradient bg-mean-fruit">
+                                </i>
+                                </div>
+                                <div>
+                                    <input id="pageOpdId" type="hidden" th:value="${opdId}" />
+                                    <input id="pageJenisSaprasId" type="hidden" th:value="${jenisSaprasId}" />
+
+                                    <span th:text="${pageTitle}">TITLE</span>
+                                    <div class="page-title-subheading">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- <div class="page-title-actions">
+                        <button type="button" data-toggle="tooltip" title="Tidak ada pesan" data-placement="bottom" class="btn-shadow mr-3 btn btn-dark">
+                                <i class="fa fa-bell"></i>
+                            </button>
+                    </div> -->
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <div class="main-card mb-3 card">
+                                <div class="card-header">
+                                    <!-- <a th:href="@{~/admin/users}" class="mr-2 btn-icon btn-icon-only btn btn-outline-info "><i class="fas fa-arrow-left btn-icon-wrapper "> </i>&nbsp;Kembali</a> -->
+                                    <a id="tombolKembaliToList" class="mr-2 btn-icon btn-icon-only btn btn-outline-info "><i class="fas fa-arrow-left btn-icon-wrapper "> </i>&nbsp;Kembali</a>
+
+
+                                    <div class="btn-actions-pane-right">
+                                        <div class="btn-group" role="group" data-toggle="buttons">
+                                            <div class="btn-group btn-group-toggle" data-toggle="buttons" th:switch="${domain.tempInt1}">
+                                                <input id="text_btnGroup1" type="hidden" value="active" />
+
+                                                <label class="btn btn-outline-success btn-transition active" th:case="${0}">
+                                                        <input type="radio" name="option1" autocomplete="off" checked> <small>Baru</small>
+                                                    </label>
+                                                <label class="btn btn-outline-primary btn-transition active" th:case="${1}">
+                                                        <input type="radio" name="option2" autocomplete="off"> <small>Edit</small>
+                                                </label>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <form class="needs-validation" novalidate th:object="${domain}" th:action="@{~/kegiatan_lokasi_form/save_process}" method="post" enctype="multipart/form-data">
+
+                                    <div class="card-body">
+                                        <input type="hidden" th:field="*{id}" th:value="*{id}" />
+                                        <input type="hidden" th:field="*{tempInt1}" th:value="*{tempInt1}" />
+
+                                        <input id="kegiatanBeanId" type="hidden" th:field="*{kegiatanBean}" th:value="*{kegiatanBean}" />
+
+                                        <div th:if="${saveUser eq 'success'}" class="alert alert-success alert-dismissable">
+                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                            <strong>Save Successfully</strong>
+                                        </div>
+
+
+                                        <div class="form-row">
+                                            <div class="col-md-3 mb-3">
+                                                <label for="customSelectKecamatan" class="">Kecamatan</label>
+                                                <select th:field="*{kecamatanBean}" type="select" id="customSelectKecamatan" name="customSelectKecamatan" class="custom-select">
+                                                    <option value="" disabled>-- Pilih Kecamatan</option>
+                                                    <option th:each=" domainKecamatan, iStat : ${listKecamatan}"
+                                                            th:value="${domainKecamatan.id}"
+                                                            th:utext="${domainKecamatan.description}"
+                                                            th:attr="data-id=${domainKecamatan.id}, data-title=${domainKecamatan.description} "
+                                                            >
+
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-4 mb-3">
+                                                <label for="customSelectDesa" class="">Desa</label>
+                                                <select th:field="*{desaBean}" type="select" id="customSelectDesa" name="customSelectDesa" class="custom-select">
+                                                    <option value="" disabled>-- Desa</option>
+                                                    <option th:each=" domainDesa, iStat : ${listDesa}"
+                                                            th:value="${domainDesa.id}">
+                                                            <div th:utext="${domainDesa.description} + ', ' " ></div>       
+                                                            <div th:utext="${domainDesa.kecamatanBean.description}" style="font-size: 1px;"></div>
+                                                    </option>
+                                                </select>
+                                            </div>
+
+                                            <script>
+                                                $(function() {
+
+                                                    var showCity = function(selectedState) {
+                                                        $('#customSelectDesa option').hide();
+                                                        $('#customSelectDesa').find('option').filter(function() {
+                                                            var city = $(this).text();
+                                                            // var city = $(this).attr('data-title');
+                                                            // alert(city);
+                                                            return city.indexOf(selectedState) != -1;
+                                                        }).show();
+                                                        //set default value
+                                                        // var defaultCity = $('#customSelectDesa option:visible:first').text();
+                                                        var defaultCity = $('#customSelectDesa option:visible:first').attr('data-title');
+                                                        $('#customSelectDesa').val(defaultCity);
+                                                    };
+
+                                                    //set default state
+                                                    // var state = $('#customSelectKecamatan').val();
+                                                    // showCity(state);
+                                                    $('#customSelectKecamatan').change(function() {
+                                                        var keyText = $('#customSelectKecamatan option:selected').text();
+                                                        // showCity($(this).val());
+                                                        // showCity('Bula Barat');
+                                                        // alert($('#customSelectKecamatan option:selected').attr('data-id') + ' >> ' + $('#customSelectKecamatan option:selected').attr('data-title'));
+                                                        showCity(keyText);
+                                                    });
+
+                                                });
+                                            </script>
+
+                                        </div>
+
+                                        <div class="form-row">
+                                            <div class="col-md-3 mb-3">
+                                                <label for="validationCustom03">Nilai Dana</label>
+                                                <div class="input-group">
+                                                    <input th:field="*{nilaiDana}" placeholder="Nilai Dana" step="1" type="number" class="form-control">
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-row">
+                                            <div class="col-md-2 mb-3">
+                                                <label for="validationCustom03">Latitude1</label>
+                                                <div class="input-group">
+                                                    <input th:field="*{tagLat1}" placeholder="Amount" step="1" type="number" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2 mb-3">
+                                                <label for="validationCustom03">Longitude1</label>
+                                                <div class="input-group">
+                                                    <input th:field="*{tagLon1}" placeholder="Amount" step="1" type="number" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col-md-2 mb-3">
+                                                <label for="validationCustom03">Latitude2</label>
+                                                <div class="input-group">
+                                                    <input th:field="*{tagLat2}" placeholder="Amount" step="1" type="number" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2 mb-3">
+                                                <label for="validationCustom03">Longitude2</label>
+                                                <div class="input-group">
+                                                    <input th:field="*{tagLon2}" placeholder="Amount" step="1" type="number" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-row">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-sm-5 imgUp">
+                                                        <div class="imagePreview"></div>
+                                                        <label class="btn btn-primary">
+                                                            <i class="fas fa-plus-circle    "></i>
+                                                            Gambar<input type="file" id="file_1" name="file_1" class="uploadFile img" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-sm-5 imgUp">
+                                                        <div class="imagePreview"></div>
+                                                        <label class="btn btn-primary">
+                                                            <i class="fas fa-plus-circle    "></i>
+                                                            Gambar<input type="file" id="file_2" name="file_2" class="uploadFile img" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">
+                                                        </label>
+                                                    </div>
+                                                    <!-- <i class="fa fa-plus imgAdd"></i> -->
+                                                    <!-- <i class="fa fa-plus imgAdd"></i> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="form-row">
+                                            <div class="btn-actions-pane-right ">
+                                                <!-- <a th:href="@{~/admin/users}" class="mr-2 btn-icon btn-icon-only btn btn-outline-info "><i class="fas fa-arrow-left btn-icon-wrapper "> </i>&nbsp;Kembali</a> -->
+                                                <button type="submit" class="mr-2 btn-icon btn-icon-only btn btn-primary "><i class="fas fa-save btn-icon-wrapper ">&nbsp;Simpan</i></button>
+                                            </div>
+                                        </div>
+                                        <br>
+
+
+                                    </div>
+
+
+
+                                </form>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="main-card mb-3 card">
+                                            <!-- <div class="card-header">
+                                            </div> -->
+                                            <br>
+                                            <div class="table-responsive ">
+
+                                                <tr th:each=" domainLokasiPics, iStat_LokasiPics : ${allData_LokasiPics} ">
+
+                                                    <div class="row align-items-center">
+                                                        <div class="col-sm-1"></div>
+                                                        <div class=" widget-content p-0 ">
+                                                            <div class=" widget-content-wrapper ">
+                                                                <div class="card ">
+                                                                    <img class="card-img-top " th:src="@{~/images/{imageName}(imageName=${domainLokasiPics.imageName})} " alt=" ">
+                                                                    <div class="card-body ">
+                                                                        <h5 class="card-title " th:text="${domainLokasiPics.description} ">Title</h5>
+                                                                        <p class="card-text " th:text="${#temporals.format(domainLokasiPics.created,'dd MMM yyyy HH:mm:ss')} ">Content</p>
+
+                                                                        <button class="mr-2 border-0 btn-icon btn-icon-only btn btn-outline-danger" th:data-href="@{~/kegiatan_lokasi_pics/delete/{id}(id=${domainLokasiPics.id})} " data-toggle="modal" data-target="#confirm-delete">
+                                                                            <i class="pe-7s-trash btn-icon-wrapper "> </i>
+                                                                        </button>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                </tr>
+
+                                            </div>
+
+
+                                            <div class="d-block text-center card-footer ">
+                                                <div th:if="${msg eq 'success'} " class="alert alert-success alert-dismissable ">
+                                                    <button type="button " class="close " data-dismiss="alert " aria-hidden="true ">&times;
+                                                    </button> Task Saved <strong> Successfully</strong>
+                                                </div>
+                                                <div th:if="${msg eq 'active'} " class="alert alert-success alert-dismissable ">
+                                                    <button type="button " class="close " data-dismiss="alert " aria-hidden="true ">&times;
+                                                    </button>
+                                                    <strong><h6 th:text="${msgText} "/></strong>
+                                                </div>
+                                                <div th:if="${msg eq 'active_fail'} " class="alert alert-danger alert-dismissable ">
+                                                    <button type="button " class="close " data-dismiss="alert " aria-hidden="true ">&times;
+                                                    </button>
+                                                    <strong>Error !!!</strong>
+                                                    <h6 th:text="${msgText} " />
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        Konfirmasi Hapus
+                    </div>
+                    <div class="modal-body">
+                        Yakin akan menghapus Data?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-danger btn-ok">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <script type="text/javascript " th:src="@{~/src/assets/scripts/main.js} "></script>
+
+
+        <script>
+            var password = document.getElementById("password"),
+                confirm_password = document.getElementById("confirm_password");
+
+            function validatePassword() {
+                if (password.value != confirm_password.value) {
+                    confirm_password.setCustomValidity("Passwords Don't Match");
+                } else {
+                    confirm_password.setCustomValidity('');
+                }
+            }
+            password.onchange = validatePassword;
+            confirm_password.onkeyup = validatePassword;
+        </script>
+
+
+        <script>
+            $(document).ready(function() {
+                // $('#buttonDelete').click(function() {
+                //     alert("Hello bos ");
+                // });
+                $('.table #btnRowDelete').on('click', function(event) {
+                    var id = $(this).parent().find('#rowId').val();
+                    $('#idToDelete').val(id);
+                });
+                //Proses Hapus
+                $('#deleteButtonYes').on('click', function(event) {
+                    var id = $('#idToDelete').val();
+                    var url = "/kegiatan/delete/ " + id;
+                    // alert("yess bos: " + url);
+                    $(location).attr('href', url);
+                });
+
+
+                // Opsi hapus Confirm Biasa
+                $('#table1').on("click ", "#btnRowDelete_dataTables ", function() {
+                    // console.log($(this).parent());
+                    // if (confirm("Yakin Menghapus Data? " + $(this).val())) {
+                    //     var table = $('#table1').DataTable();
+                    //     table.row($(this).parents('tr')).remove().draw(false);
+
+                    //     //Proses Delete to Database
+                    //     // var url = "/master/dinas/delete/ " + $(this).val();
+                    //     // $(location).attr('href', url);
+                    // }
+                });
+
+                $('#confirm-delete').on('show.bs.modal', function(e) {
+                    $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+                });
+
+
+            });
+        </script>
+
+
+        <script>
+            $.fn.dataTable.ext.search.push(
+                function(settings, data, dataIndex) {
+                    var keyword = $('#text_search').val().toLowerCase();
+                    var keyword_2 = $('#text_btnGroup1').val().toLowerCase();
+
+                    var data_column1 = data[1].toLowerCase(); // use data for the age column
+                    var data_column2 = data[2].toLowerCase(); // use data for the age column
+                    var data_column3 = data[3].toLowerCase(); // use data for the age column
+
+                    if ((data_column1.includes(keyword) || data_column2.includes(keyword) || data_column3.includes(keyword))) {
+                        return true;
+                    }
+
+                    return false;
+                    // return true;
+                }
+            );
+
+            //Custome row render
+            $(document).ready(function() {
+                var table = $('#example, #table1').DataTable({
+                    //         // 'l' - Length changing
+                    //         // 'f' - Filtering input
+                    //         // 't' - The table!
+                    //         // 'i' - Information
+                    //         // 'p' - Pagination
+                    //         // 'r' - pRocessing
+                    dom: "tp ",
+
+                    responsive: {
+                        details: {
+                            renderer: function(api, rowIdx, columns) {
+                                var data = $.map(columns, function(col, i) {
+                                    return col.hidden ?
+                                        '<tr data-dt-row=" ' + col.rowIndex + ' " data-dt-column=" ' + col.columnIndex + ' ">' +
+                                        '<td>' + (col.title == 'Actions' ? '' : col.title + ' : ') + '</td> ' +
+                                        '<td>' + col.data + '</td>' +
+                                        '</tr>' :
+                                        '';
+                                }).join('');
+
+                                return data ?
+                                    $('<table/>').append(data) :
+                                    false;
+                            }
+                        }
+                    }
+                });
+
+                // Event listener to the two range filtering inputs to redraw on input
+                $('#max, #text_search').keyup(function() {
+                    table.draw();
+                });
+                $('#label_option1, #label_option2').click(function() {
+                    table.draw();
+                });
+
+            });
+        </script>
+
+
+
+
+        <script>
+            $(".imgAdd").click(function() {
+                $(this).closest(".row").find('.imgAdd').before(
+                    '<div class="col-sm-2 imgUp"><div class="imagePreview"></div><label class="btn btn-primary">Upload<input type="file" class="uploadFile img" value="Upload Photo" style="width:0px;height:0px;overflow:hidden;"></label><i class="fa fa-times del"></i></div>');
+            });
+            $(document).on("click", "i.del", function() {
+                $(this).parent().remove();
+            });
+            $(function() {
+                $(document).on("change", ".uploadFile", function() {
+                    var uploadFile = $(this);
+                    var files = !!this.files ? this.files : [];
+                    if (!files.length || !window.FileReader) return; // no file selected, or no FileReader support
+
+                    if (/^image/.test(files[0].type)) { // only image file
+                        var reader = new FileReader(); // instance of the FileReader
+                        reader.readAsDataURL(files[0]); // read the local file
+
+                        reader.onloadend = function() { // set image data as background of div
+                            //alert(uploadFile.closest(".upimage").find('.imagePreview').length);
+                            uploadFile.closest(".imgUp").find('.imagePreview').css("background-image", "url(" + this.result + ")");
+                        }
+                    }
+
+                });
+            });
+        </script>
+
+
+</body>
+
+</html>
